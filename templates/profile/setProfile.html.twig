@@ -1,0 +1,30 @@
+{% extends("base.html.twig") %}
+
+
+{% block body %}
+
+<div class="container-sm mx-auto border-1 border-primary card p-4" style="max-width: 600px;margin-top: 5rem">
+    <h1 class="card-title">Set Profile</h1>
+    {{ form_start(setProfileForm)}}
+    <div class="row card-body">
+        <div class="col">
+    {{
+        form_row(setProfileForm.firstName)
+    }}
+        </div>
+        <div class="col">
+            {{
+            form_row(setProfileForm.lastName)
+            }}
+        </div>
+    </div>
+    <div class="row">
+        {{ form_row(setProfileForm.birthDate)  }}
+    </div>
+    <button class="btn btn-primary">
+        SET PROFILE
+    </button>
+    {{ form_end(setProfileForm) }}
+</div>
+
+{% endblock %}

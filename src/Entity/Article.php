@@ -26,8 +26,14 @@ class Article
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime')]
     private $updatedAt;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $small_description;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $image;
 
     public function getId(): ?int
     {
@@ -82,14 +88,38 @@ class Article
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getSmallDescription(): ?string
+    {
+        return $this->small_description;
+    }
+
+    public function setSmallDescription(string $small_description): self
+    {
+        $this->small_description = $small_description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

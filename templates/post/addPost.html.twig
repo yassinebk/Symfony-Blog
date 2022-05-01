@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SociRak - Add Post{% endblock %}
+
+{% block body %}
+
+<div class="container-sm mx-auto" style="max-width: 600px;margin-top: 5rem">
+    {{ form_start(createArticleForm) }}
+    {{ form_row(createArticleForm.title) }}
+    {{ form_row(createArticleForm.small_description) }}
+    {{ form_row(createArticleForm.content) }}
+    {{ form_row(createArticleForm.image) }}
+    <button type="submit" class="btn btn-primary">ADD</button>
+    {{ form_end(createArticleForm) }}
+
+    {% endblock %}

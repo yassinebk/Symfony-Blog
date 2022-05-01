@@ -19,12 +19,12 @@ class UserProfile
     #[ORM\Column(type: 'string', length: 80)]
     private $lastName;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'date')]
     private $birthDate;
 
     #[ORM\OneToOne(inversedBy: 'userProfile', targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    #[ORM\JoinColumn(nullable:true)]
+    private ?User $user;
 
     public function getId(): ?int
     {

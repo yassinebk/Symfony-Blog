@@ -16,7 +16,6 @@ class ArticleEditType extends AbstractType
             ->add('content')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('owner')
         ;
     }
 

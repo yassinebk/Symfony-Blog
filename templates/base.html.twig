@@ -4,15 +4,63 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        <link rel="stylesheet" href="{{ asset("styles.css") }}">
+        <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/bootstrap.css") }}">
         {% block stylesheets %}
         {% endblock %}
 
-        {% block javascripts %}
+        </head>
+        <body>
+        {% include("components/navbar.html.twig") %}
+        {% block body %}
+            <div class="container-fluid mt-lg-5">
+                <div class="text-lg-center">
+                   <h1 class="alert-heading"> Welcome in<span class="text-info"> SociRak</span> !</h1>
+                </div>
+                <div class="text-lg-start" style="margin-left:3rem">
+                    <h3  class="mt-5" style="font-size:24px;margin-left: 14%">
+                        Here is a view of our latest blogs
+                    </h3>
+
+                </div>
+
+            <div class="container-lg mx-auto mt-lg-4">
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-primary">World</strong>
+                            <h3 class="mb-0">Featured post</h3>
+                            <div class="mb-1 text-muted">Nov 12</div>
+                            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-success">Design</strong>
+                            <h3 class="mb-0">Post title</h3>
+                            <div class="mb-1 text-muted">Nov 11</div>
+                            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
         {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
+        {{ include("components/messages.html.twig") }}
+        {% block javascripts %} {% endblock %}
+        <script src="{{ asset("node_modules/bootstrap/dist/js/bootstrap.js") }}"></script>
     </body>
 </html>
