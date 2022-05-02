@@ -12,9 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route("/profile")]
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
+    #[Route('/', name: 'app_profile')]
     public function index(UserRepository $userRepository,UserProfileRepository $userProfileRepository): Response
     {
         $user = $userRepository->findBy(['email' => $this->getUser()->getUserIdentifier()])[0];
@@ -28,7 +29,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route("/profile/set", name: 'app_profile_set')]
+    #[Route("/set", name: 'app_profile_set')]
     public function set_profile( Request $request, EntityManagerInterface $em,
                                  UserRepository $userRepository,
     UserProfileRepository $userProfileRepository)
