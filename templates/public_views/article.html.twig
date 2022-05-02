@@ -1,0 +1,94 @@
+{% extends('base.html.twig') %}
+
+{% block title %}
+    SociRak - {{ article.title }}
+{% endblock %}
+{% block body %}
+<style>
+    .article-content {
+        margin-top: 3rem;
+        background-color: #e7e6e4;
+        color: black;
+        font-family: 'Montserrat', serif;
+        padding: 2rem;
+    }
+</style>
+
+<div class="blog-post col-8 mx-auto my-5 border-1 border-black p-3">
+    <div class="row">
+        <h1 class="card-title blog-post-title">{{ article.title }}</h1>
+        <div class="row col-7">
+            <div class="blog-post-meta col-4">
+                {{ article.createdAt | date('d-m-Y') }}
+            </div>
+            <div class="row card-subtitle blog-post-meta col-4">
+                Posted by {{ article.owner.userProfile.firstName }} {{ article.owner.userProfile.lastName }}
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        {#                <img src="{{ asset("uploads/article#{article.image}") }}" alt="{{ article.title }}"> #}
+        <img class="col-10" src="{{ asset("uploads/articles/#{article.image}") }}" alt="{{ article.title }}">
+        {#            <img src="uploads/articles{{ asset(article.image) }}"/> #}
+        <div class="article-content col-10">
+            <p>
+                {{ article.content }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card-footer">
+    <h3>Comments</h3>
+    {% if(is_granted('IS_AUTHENTICATED_FULLY')) %}
+        <div class="card">
+            {{ form_start(addCommentForm) }}
+            <div class="row "
+                 style="display:flex;align-items: center;padding-left: 2rem;padding-right: 2rem;padding-top:1rem;padding-bottom: 1rem;">
+                <div class="col-10">{{ form_row(addCommentForm.content) }}</div>
+                <div class="col-2">
+                    <button class="btn btn-primary">Comment</button>
+                </div>
+            </div>
+            {{ form_end(addCommentForm) }}
+        </div>
+    {% else %}
+        <div style="display: flex;align-items: center;" class="mt-4">
+            <h4 class="text-info">Login to your account to be able to put a comment</h4>
+            <a href="{{ path("app_login") }}" class="btn btn-info" style="color:white;margin-left: 2rem"> Login</a>
+        </div>
+    {% endif %}
+
+    <div class="col">
+        {% for comment in comments %}
+        <br/>
+        <div class="row card my-2">
+            <div class="row col-6 ">
+                <div class="col-8">
+                    <div class="row col-6 blog-post-meta">
+                        <div class="col-6">
+                            {{ comment.owner.userProfile.firstName }} {{ comment.owner.userProfile.lastName }} </div>
+                    </div>
+                    <div class="row blog-post-meta">
+                        {{ comment.createdAt | date('d-m-y h-m-s') }}
+                    </div>
+                </div>
+                <a class="col-3 btn btn-danger h-50" href="{{ path("comment_delete",{id:comment.id}) }}">delete</a>
+            </div>
+            <div class="row blog-post">{{ comment.content }}</div>
+
+
+            {% else %}
+                <div>
+                    <div>
+                        <h4>No Comments for this article Yet</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+    {% endblock %}
